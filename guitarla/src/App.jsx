@@ -1,10 +1,11 @@
 import Guitar from "./components/Guitar";
 import Header from "./components/Header";
 import { useState } from "react";
+import { db } from "./data/db";
 function App() {
+  const [data, setData] = useState(db);
+  // console.log(auth);
 
-  const [auth, setAuth] = useState(false)
-  console.log(auth);
   return (
     <>
       <Header />
@@ -13,7 +14,9 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-          <Guitar />
+          {data.map((guitar) => (
+            <Guitar key={guitar.id} guitar={guitar} />
+          ))}
         </div>
       </main>
 
